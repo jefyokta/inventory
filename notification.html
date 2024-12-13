@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Example</title>
+</head>
+<body>
+    <button id="btn">Show Notification</button>
+
+    <script>
+        document.getElementById('btn').addEventListener('click', () => {
+            Notification.requestPermission().then(permission => {
+                console.log('Permission:', permission);
+                if (permission === 'granted') {
+                    try {
+                        const notification = new Notification('Hello!', {
+                            body: 'This is a test notification.',
+                            requireInteraction: true,
+                            icon: 'https://via.placeholder.com/100' // Opsional
+                        });
+                        console.log('Notification created:', notification);
+                    } catch (error) {
+                        console.error('Error creating notification:', error);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
